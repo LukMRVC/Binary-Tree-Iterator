@@ -11,7 +11,6 @@ class BinaryTree
 {
 
 private:
-
 	class Node
 	{
 	public:
@@ -21,13 +20,10 @@ private:
 		Node *left = nullptr;
 		Node *right = nullptr;
 	};
-
 	void exportDOT(std::ofstream & file, Node *, int counter = 0) const;
 	void insert(const T &, Node *&);
-
 	std::function<int(T, T)> comparator;
 	Node * root = nullptr;
-
 public:
 	class Iterator
 	{
@@ -46,14 +42,11 @@ public:
 		Queue<BinaryTree<T>::Node*> *queue = nullptr;
 		friend BinaryTree<T>::Iterator & BinaryTree<T>::begin(void) const;
 	};
-
 	BinaryTree(const std::function<int(T, T)> &);
 	~BinaryTree();
 	void insert(const T &);
 	BinaryTree<T>::Iterator & begin(void) const;
 	void exportDOT() const;
-
-
 };
 
 template<class T>
@@ -143,7 +136,6 @@ BinaryTree<T>::Node::~Node()
 template<class T>
 void BinaryTree<T>::Iterator::reset()
 {
-	queue->Clear();
 	queue->Enqueue(tree->root);
 }
 
