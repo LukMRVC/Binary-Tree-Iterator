@@ -15,9 +15,9 @@ int main(void)
 	BinaryTree<int> *tree = new BinaryTree<int>(func);
 	srand(time(nullptr));
 
-	for (size_t i = 0; i < 10; i++)
+	for (size_t i = 0; i < 100; i++)
 	{
-		tree->insert(rand() % 99 + 1);
+		tree->insert(rand() % 10000 + 1);
 	}
 
 	auto it = tree->begin();

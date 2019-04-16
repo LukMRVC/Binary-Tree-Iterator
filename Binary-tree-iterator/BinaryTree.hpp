@@ -9,8 +9,26 @@ using namespace ADSLibrary::DataStructures::LinkedStructures::OOP;
 template<class T>
 class BinaryTree
 {
+
+private:
+
+	class Node
+	{
+	public:
+		Node(const T &);
+		~Node();
+		T key;
+		Node *left = nullptr;
+		Node *right = nullptr;
+	};
+
+	void exportDOT(std::ofstream & file, Node *, int counter = 0) const;
+	void insert(const T &, Node *&);
+
+	std::function<int(T, T)> comparator;
+	Node * root = nullptr;
+
 public:
-	class Node;
 	class Iterator
 	{
 	public:
@@ -35,23 +53,6 @@ public:
 	BinaryTree<T>::Iterator & begin(void) const;
 	void exportDOT() const;
 
-private:
-
-	class Node
-	{
-	public:
-		Node(const T &);
-		~Node();
-		T key;
-		Node *left = nullptr;
-		Node *right = nullptr;
-	};
-
-	void exportDOT(std::ofstream & file, Node *, int counter = 0) const;
-	void insert(const T &, Node *&);
-
-	std::function<int(T, T)> comparator;
-	Node * root = nullptr;
 
 };
 
