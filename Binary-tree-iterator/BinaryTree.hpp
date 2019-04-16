@@ -14,7 +14,6 @@ public:
 	class Iterator
 	{
 	public:
-		friend class BinaryTree<T>;
 		void reset();
 		const T & currentKey() const;
 		void next();
@@ -23,11 +22,11 @@ public:
 		Iterator & operator++();
 		Iterator & operator++(int);
 		inline bool operator!() const { return !isEnd(); }
-
 	private:
 		Iterator(const BinaryTree<T> * const &);
 		BinaryTree<T> const * tree;
 		Queue<BinaryTree<T>::Node*> *queue = nullptr;
+		friend BinaryTree<T>::Iterator & BinaryTree<T>::begin(void) const;
 	};
 
 	BinaryTree(const std::function<int(T, T)> &);
@@ -158,7 +157,7 @@ void BinaryTree<T>::Iterator::next()
 {
 	auto n = queue->Dequeue();
 	if (n->left != nullptr) queue->Enqueue(n->left);
-	if (n->right  != nullptr) queue->Enqueue(n->right);
+	if (n->right != nullptr) queue->Enqueue(n->right);
 }
 
 template<class T>
