@@ -35,13 +35,15 @@ public:
 		~Iterator();
 		Iterator & operator++();
 		Iterator & operator++(int);
-		inline bool operator!() const { return !isEnd(); }
+		inline bool operator!(void) const { return !isEnd();  }
+		
 	private:
 		Iterator(const BinaryTree<T> * const &);
 		BinaryTree<T> const * tree;
 		Queue<BinaryTree<T>::Node*> *queue = nullptr;
 		friend BinaryTree<T>::Iterator & BinaryTree<T>::begin(void) const;
 	};
+
 	BinaryTree(const std::function<int(T, T)> &);
 	~BinaryTree();
 	void insert(const T &);
@@ -142,7 +144,7 @@ void BinaryTree<T>::Iterator::reset()
 template<class T>
 const T & BinaryTree<T>::Iterator::currentKey() const
 {
-	return queue->Peek()->key;
+	return (queue->Peek() != nullptr) ? queue->Peek()->key : INT32_MAX;
 }
 
 template<class T>

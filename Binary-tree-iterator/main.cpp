@@ -15,20 +15,27 @@ int main(void)
 	BinaryTree<int> *tree = new BinaryTree<int>(func);
 	srand(time(nullptr));
 
-	for (size_t i = 0; i < 100; i++)
+	int _rand = 0;
+	for (size_t i = 0; i < 12; i++)
 	{
-		tree->insert(rand() % 10000 + 1);
+		_rand = rand() % 10000 + 1;
+		std::cout << "Nahodna generovana hodnota je: " << _rand << std::endl;
+		tree->insert(_rand);
 	}
 
 	auto it = tree->begin();
-	
-	//tree->exportDOT();
 
 	while (!it)
 	{
 		std::cout << it.currentKey() << std::endl;
 		it++;
 	} 
+
+	BinaryTree<int> *bst = new BinaryTree<int>(func);
+
+	auto iterator = bst->begin();
+
+	std::cout << iterator.currentKey() << std::endl;
 
 	system("pause");
 	return 0;
