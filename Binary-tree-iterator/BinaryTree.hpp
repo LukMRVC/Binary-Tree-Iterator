@@ -20,7 +20,7 @@ private:
 		Node *left = nullptr;
 		Node *right = nullptr;
 	};
-	void exportDOT(std::ofstream & file, Node *, int counter = 0) const;
+	void exportDOT(std::ofstream & file, Node *) const;
 	void insert(const T &, Node *&);
 	std::function<int(T, T)> comparator;
 	Node * root = nullptr;
@@ -84,26 +84,26 @@ template<class T>
 void BinaryTree<T>::exportDOT() const
 {
 	std::ofstream file("graf.gv", ios::trunc);
-	file << "graph {";
+	file << "graph {" << std::endl;
 	exportDOT(file, root);
 	file << "}";
 }
 
 template<class T>
-void BinaryTree<T>::exportDOT(std::ofstream & file,  Node * root, int counter) const
+void BinaryTree<T>::exportDOT(std::ofstream & file,  Node * root) const
 {
 
 	if (root == nullptr)
 		return;
 	if (root->left != nullptr)
 	{
-		file << "    _" << counter << " -- _" << (counter + 1) << std::endl;
-		exportDOT(file, root->left, counter + 1);
+		file << "    _" << root->key << " -- _" << (root->left->key) << std::endl;
+		exportDOT(file, root->left);
 	}
 	if (root->right != nullptr)
 	{
-		file << "    _" << counter << " -- _" << (counter + 1) << std::endl;
-		exportDOT(file, root->right, counter + 1);
+		file << "    _" << root->key << " -- _" << (root->right->key) << std::endl;
+		exportDOT(file, root->right);
 	}
 
 }
